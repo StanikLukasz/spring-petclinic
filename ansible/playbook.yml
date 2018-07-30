@@ -1,0 +1,66 @@
+---
+- hosts: localhost
+#  vars:
+#   pip_install_packages:
+#      - name: docker
+#  roles:
+#    - geerlingguy.pip
+#    - geerlingguy.docker
+  tasks:
+  - name: docker gerrit container
+    docker_container:
+      name: gerrit
+      image: openfrontier/gerrit
+      state: started
+      ports:
+      - "8082:8080"
+      - "29418:29418"
+      env:
+        AUTH_TYPE: DEVELOPMENT_BECOME_ANY_ACCOUNT
+  - name: jenkins container
+    docker_container: 
+      name: jenkins
+      image: jenkins/jenkins
+      state: started
+      ports:
+      - "8080:8080"
+      - "50000:50000"
+      volumes:
+      - jenkins_home:/var/jenkins_home
+  - name: nexus container
+    docker_container:
+      name: nexus
+      image: sonatype/nexus3
+      state: started
+      ports:
+      - "8081:8081"
+  - name: deploing petclinic
+    docker_container:
+      name: spring-petclinic
+      image: lstanik/spring-petclinic
+      state: started
+      ports:
+      -  "12345:8080"
+      
+
+- hosts: jenkins
+  tasks:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#  - name: install plugin
+ #   jenkins_plugin:
+  #    name: build-pipeline-plugin
+

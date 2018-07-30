@@ -1,0 +1,4 @@
+jenkins ansible_connection=docker
+nexus ansible_connection=docker
+gerrit ansible_connection=docker
+spring-petclinic ansible_connection=docker
