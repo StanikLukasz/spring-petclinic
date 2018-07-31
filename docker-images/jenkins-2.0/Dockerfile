@@ -10,10 +10,10 @@ RUN apt-get install git
 #git fetch --all; \
 #git reset --hard origin/master 
 
-#RUN git clone https://github.com/StanikLukasz/Jenkins-github.git /var/jenkins_config
-
 RUN git clone https://github.com/StanikLukasz/Jenkins-backup.git
 
 ENV JENKINS_HOME "/Jenkins-backup"
- 
+
+RUN mkdir /Jenkins-backup/.ssh; \
+ssh-keygen -f /Jenkins-backup/.ssh/id_rsa -N ""
 

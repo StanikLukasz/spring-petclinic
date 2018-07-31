@@ -20,11 +20,10 @@
   - name: jenkins container
     docker_container: 
       name: jenkins
-      image: jenkins/jenkins
+      image: lstanik/jenkins:1.2
       state: started
       ports:
       - "8080:8080"
-      - "50000:50000"
       volumes:
       - jenkins_home:/var/jenkins_home
   - name: nexus container
